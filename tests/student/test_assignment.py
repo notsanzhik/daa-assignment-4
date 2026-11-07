@@ -1,5 +1,3 @@
-"""Independent correctness and domain checks for the Python JSONL program."""
-
 import itertools
 import json
 from pathlib import Path
@@ -199,8 +197,6 @@ class AssignmentTests(unittest.TestCase):
                 self.assertEqual(positions, expected_positions(request["text"], request["pattern"]))
 
     def test_rk_collisions_and_negative_update(self):
-        # Both ab and dj hash to 75. Rolling from ab to bd subtracts
-        # 97*31 from 75 before reducing modulo 101.
         pairs = [("abdj", "ab"), ("djdjabdjdjab", "ab"),
                  ("ababdjabab", "dj"), ("ababa", "ba"), ("dj" * 5000, "ab")]
         requests = [dict(task="rk", text=text, pattern=pattern) for text, pattern in pairs]
