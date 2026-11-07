@@ -1,5 +1,3 @@
-"""Compare all three substring search functions on reproducible inputs."""
-
 from pathlib import Path
 from random import Random
 from statistics import median
