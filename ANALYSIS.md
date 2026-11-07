@@ -110,8 +110,3 @@ Each algorithm was called once per input for untimed verification and warm-up, t
 | Repetitive | 3000 | 300 | — | RK | 0.4452 | 0.4385 | 0.8106 | 0.4452 | Yes |
 
 Naive search rejects most random windows early. On the repetitive inputs, the first differing character occurs at the end of each unsuccessful window, and the largest median rose from 0.6820 ms on random text to 42.4689 ms on repetitive text. KMP reused prefix matches and had the lowest median in all six cases. RK hashes separated the repeated all-`a` windows from the ending-`b` pattern, so it verified only the true candidate on those inputs. Modulus 101 allows many different windows to share a hash. More such windows would raise the verification cost, as the separate collision test illustrates. These measurements describe the six benchmark inputs. The bounds above follow from the operations of each algorithm.
-
-## Sources and AI assistance
-
-- The [official Assignment 4 template](https://github.com/RZhaniya/daa-assignment-4-archive) supplied the starter interface, [contracts](docs/guide/CONTRACTS.md), [algorithm notes](docs/LECTURE_CLARIFICATIONS_EN_RU.md), public fixtures, and the analysis and benchmark requirements.
-- OpenAI Codex generated the Python implementations, student tests, benchmark and this analysis. Codex verified the result by running the template checks, the student suite with independent small-input oracles and boundary cases, and the benchmark with an independent match check. The results above are from those runs.
