@@ -1,6 +1,4 @@
-"""Implement algorithm bodies. See docs/guide/CONTRACTS.md; inputs and outputs are dictionaries."""
 def lcs(request):
-    """Find the length and a witness of a longest common subsequence."""
     a, b = request["a"], request["b"]
     if not a or not b:
         return {"length": 0, "sequence": ""}
@@ -30,7 +28,6 @@ def lcs(request):
 
 
 def merge(request):
-    """Minimize adjacent merge costs and return a chronological plan."""
     sizes = request["sizes"]
     n = len(sizes)
     if n <= 1:
@@ -70,7 +67,6 @@ def merge(request):
 
 
 def tree(request):
-    """Find a maximum-weight independent set of an undirected tree."""
     n = request["n"]
     if n == 0:
         return {"weight": 0, "selected": []}
@@ -82,7 +78,6 @@ def tree(request):
 
     parent = [-1] * n
     order = [0]
-    # Append children so each parent precedes them in the traversal.
     for vertex in order:
         for neighbor in neighbors[vertex]:
             if neighbor != parent[vertex]:
@@ -116,7 +111,6 @@ def _window_matches(text, pattern, start):
 
 
 def naive(request):
-    """Test every possible start by comparing characters."""
     text = request["text"]
     pattern = request["pattern"]
     if not pattern:
@@ -130,7 +124,6 @@ def naive(request):
 
 
 def kmp(request):
-    """Search using the longest proper border of each pattern prefix."""
     text = request["text"]
     pattern = request["pattern"]
     length = len(pattern)
@@ -163,7 +156,6 @@ def kmp(request):
 
 
 def rk(request):
-    """Use a rolling hash to filter windows before exact comparison."""
     text = request["text"]
     pattern = request["pattern"]
     length = len(pattern)
@@ -191,7 +183,6 @@ def rk(request):
 
 
 def suffix(request):
-    """Build the suffix order by doubling and adjacent LCPs with Kasai."""
     text = request["text"]
     size = len(text)
     if size == 0:
@@ -247,7 +238,6 @@ def suffix(request):
 
 
 def aho(request):
-    """Count dictionary matches with trie transitions and failure links."""
     patterns = request["patterns"]
     texts = request["texts"]
     if not texts:
@@ -269,7 +259,6 @@ def aho(request):
         terminals.append(state)
 
     failure = [0] * len(transitions)
-    # Appending children to the end makes this list a breadth-first queue.
     breadth_first = list(transitions[0].values())
     for state in breadth_first:
         for character, child in transitions[state].items():
